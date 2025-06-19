@@ -4,6 +4,7 @@ import com.example.spring_cooking.model.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -39,6 +40,11 @@ public class CategoryService {
     }
 
     public void deleteCategory(Long id) {
-        categories.removeIf(c -> c.getId().equals(id));
+        for (int i = 0; i < categories.size(); i++) {
+            if (categories.get(i).getId().equals(id)) {
+                categories.remove(i);
+                break;
+            }
+        }
     }
 }

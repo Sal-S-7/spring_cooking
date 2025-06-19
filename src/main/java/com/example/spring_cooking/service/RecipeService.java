@@ -41,6 +41,11 @@ public class RecipeService {
     }
 
     public void deleteRecipe(Long id) {
-        recipes.removeIf(r -> r.getId().equals(id));
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i).getId().equals(id)) {
+                recipes.remove(i);
+                break;
+            }
+        }
     }
 }
