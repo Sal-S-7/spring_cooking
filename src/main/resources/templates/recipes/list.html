@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipes List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+<h1>Recipes</h1>
+
+<a href="/recipes/add">Add New Recipe</a> | <a href="/">Home</a><br><br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.name}">Recipe Name</td>
+        <td th:text="${recipe.category != null ? recipe.category.name : 'No Category'}"></td>
+        <td>
+            <a th:href="@{/recipes/{id}(id=${recipe.id})}">Details</a> |
+            <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a> |
+            <a th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
+               onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
